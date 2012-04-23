@@ -1,6 +1,9 @@
 require 'capistrano'
 
+require "backerman/recipes/chef_solo"
+require "backerman/recipes/chef_librarian"
 
-if Capistrano::Configuration.instance
-  Capistrano::Configuration.instance.load_paths << File.dirname(__FILE__)
+if instance = Capistrano::Configuration.instance
+  Capistrano::Backerman::ChefSolo.load_into(instance)
+  Capistrano::Backerman::ChefLibrarian.load_into(instance)
 end
