@@ -1,4 +1,5 @@
 require 'capistrano'
+
 require 'minitest/autorun'
 require 'minitest/capistrano'
 require 'minitest/colorize'

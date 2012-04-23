@@ -6,6 +6,7 @@ module Capistrano::Backerman
   module ChefSolo
     def self.load_into(configuration)
       configuration.load do
+
         before 'chef_solo:install', 'chef_librarian:install'
         after 'deploy:setup', 'deploy:set_ownership'
 
