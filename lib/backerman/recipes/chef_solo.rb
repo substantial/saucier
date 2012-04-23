@@ -7,10 +7,19 @@ module Capistrano::Backerman
     def self.load_into(configuration)
       configuration.load do
         before 'chef_solo:install', 'chef_librarian:install'
+        after 'deploy:setup', 'deploy:set_ownership'
 
         _cset(:default_ruby, "default")
         _cset(:gemset, "global")
         _cset(:deploy_to, "/etc/chef")
+        _cset(:user, "deploy")
+        _cset(:group, "rvm")
+
+        namespace :deploy do
+          task :set_ownership do
+            sudo "chown -R #{user}:#{group} #{deploy_to}"
+          end
+        end
 
         namespace :chef_solo do
           task :default do
