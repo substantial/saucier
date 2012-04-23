@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Shaun Dern"]
   s.email       = ["shaun@substantial.com"]
   s.homepage    = ""
-  s.summary     = %q{Provision servers for your project with a single command. Use multi-stage}
-  s.description = %q{Uses Chef-librarian and Chef-solo to provision servers defined for any stage}
+  s.summary     = %q{Use chef-librarian to manage and track chef cookbook versions and chef-solo to provision servers for your project with a single command.}
+  s.description = %q{Create capistrano stages to quickly provision servers for your project. Keep your cookbook dependencies inside your project with chef-librarian.}
 
   s.rubyforge_project = "backerman"
 
