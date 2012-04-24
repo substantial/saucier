@@ -1,6 +1,6 @@
-# backerman
+# cap-sous-chef
 
-  backerman is a Capistrano Extension that uses [librarian](https://github.com/applicationsonline/librarian.git "chef-librarian")
+  cap-sous-chef is a Capistrano Extension that uses [librarian](https://github.com/applicationsonline/librarian.git "chef-librarian")
 and [chef-solo](https://github.com/opscode/chef "chef") to manage project dependencies and provision servers for your project.
 
 Use Capistrano Multistage to manage your servers and environments.
@@ -11,7 +11,7 @@ Use with [cap-strap](https://github.com/substantial/cap-strap "cap-strap") to bo
 
 Add this line to your application's Gemfile:
 
-    gem 'backerman'
+    gem 'cap-sous-chef'
 
 And then execute:
 
