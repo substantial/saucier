@@ -8,9 +8,9 @@ module Capistrano::CapSousChef
       def self.load_into(configuration)
         configuration.load do
 
+          before 'chef_solo:default', 'deploy:bundle_install'
           before 'chef_solo:install', 'chef_librarian:install'
           after 'deploy:setup', 'deploy:set_ownership'
-          after 'deploy:update_code', 'deploy:bundle_install'
 
           _cset(:chef_ruby, "default")
           _cset(:chef_gemset, "global")
