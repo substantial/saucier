@@ -10,8 +10,8 @@ module Capistrano::Backerman
         before 'chef_solo:install', 'chef_librarian:install'
         after 'deploy:setup', 'deploy:set_ownership'
 
-        _cset(:default_ruby, "default")
-        _cset(:gemset, "global")
+        _cset(:chef_ruby, "default")
+        _cset(:chef_gemset, "global")
         _cset(:deploy_to, "/etc/chef")
         _cset(:user, "deploy")
         _cset(:group, "rvm")

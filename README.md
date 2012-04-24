@@ -22,11 +22,11 @@ And then execute:
 
 ###Configuration:
 
-* `set :default_ruby, "<ruby version you'd like to run>"` - default: "default"
-* `set :gemset, "<gemset for your project>"` - default: "global"
-* `set :deploy_to, "<set path for deploying chef-solo>"` - default: "/etc/chef"
 * `set :user, "<user that will be executing chef-solo>"` - default: "deploy"
 * `set :group, "<group for deploy user. keep as rvm if using rvm>"` - default: "rvm"
+* `set :deploy_to, "<set path for deploying chef-solo>"` - default: "/etc/chef"
+* `set :chef_ruby, "<ruby you'd like to run librarian and chef-solo>"` - default: "default"
+* `set :chef_gemset, "<gemset for chef>"` - default: "global"
 * `set :chef_solo_config, "<relative path to the chef solo config>"` - default ".chef/solo.rb"
 * `set :chef_node_config, "<relative path to your node config>"` - default ".chef/node.json"
 

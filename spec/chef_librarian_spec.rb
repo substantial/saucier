@@ -14,12 +14,12 @@ describe Capistrano::Backerman::ChefLibrarian do
   end
 
   describe "default values" do
-    it "default_ruby is 'default'" do
-      subject.fetch(:default_ruby).must_equal "default"
+    it "chef_ruby is 'default'" do
+      subject.fetch(:chef_ruby).must_equal "default"
     end
 
-    it "gemset is 'global'" do
-      subject.fetch(:gemset).must_equal "global"
+    it "chef_gemset is 'global'" do
+      subject.fetch(:chef_gemset).must_equal "global"
     end
   end
 

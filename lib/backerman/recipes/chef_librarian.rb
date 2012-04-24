@@ -6,8 +6,8 @@ module Capistrano::Backerman
     def self.load_into(configuration)
       configuration.load do
 
-        _cset(:default_ruby, "default")
-        _cset(:gemset, "global")
+        _cset(:chef_ruby, "default")
+        _cset(:chef_gemset, "global")
 
         namespace :chef_librarian do
           task :default do
