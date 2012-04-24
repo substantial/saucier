@@ -1,8 +1,8 @@
 require 'capistrano'
-require 'backerman/helpers'
-require 'backerman/recipes/chef_librarian'
+require 'cap-sous-chef/helpers'
+require 'cap-sous-chef/recipes/chef_librarian'
 
-module Capistrano::Backerman
+module Capistrano::CapSousChef
   module ChefSolo
     def self.load_into(configuration)
       configuration.load do
@@ -47,5 +47,5 @@ module Capistrano::Backerman
 end
 
 if Capistrano::Configuration.instance
-  Capistrano::Backerman::ChefSolo.load_into(Capistrano::Configuration.instance)
+  Capistrano::CapSousChef::ChefSolo.load_into(Capistrano::Configuration.instance)
 end

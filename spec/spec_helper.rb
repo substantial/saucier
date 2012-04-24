@@ -4,7 +4,7 @@ require 'minitest/autorun'
 require 'minitest/capistrano'
 require 'minitest/colorize'
 
-require 'backerman'
+require 'cap-sous-chef'
 
 
 def load_capistrano_recipe(recipe)

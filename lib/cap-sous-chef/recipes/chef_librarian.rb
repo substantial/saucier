@@ -1,7 +1,7 @@
 require 'capistrano'
-require 'backerman/helpers'
+require 'cap-sous-chef/helpers'
 
-module Capistrano::Backerman
+module Capistrano::CapSousChef
   module ChefLibrarian
     def self.load_into(configuration)
       configuration.load do
@@ -30,5 +30,5 @@ end
 
 
 if Capistrano::Configuration.instance
-  Capistrano::Backerman::ChefLibrarian.load_into(Capistrano::Configuration.instance)
+  Capistrano::CapSousChef::ChefLibrarian.load_into(Capistrano::Configuration.instance)
 end
