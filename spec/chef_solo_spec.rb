@@ -18,12 +18,20 @@ describe Capistrano::Backerman::ChefSolo do
   end
 
   describe "default values" do
-    it "default_ruby is 'default'" do
+    it "default_ruby" do
       recipe.fetch(:default_ruby).must_equal "default"
     end
 
-    it "gemset is 'global'" do
+    it "gemset" do
       recipe.fetch(:gemset).must_equal "global"
+    end
+
+    it "chef_solo_config" do
+      recipe.fetch(:chef_solo_config).must_equal ".chef/solo.rb"
+    end
+
+    it "chef_node_config" do
+      recipe.fetch(:chef_node_config).must_equal ".chef/node.json"
     end
   end
 

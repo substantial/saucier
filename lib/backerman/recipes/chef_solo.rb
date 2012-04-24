@@ -15,6 +15,8 @@ module Capistrano::Backerman
         _cset(:deploy_to, "/etc/chef")
         _cset(:user, "deploy")
         _cset(:group, "rvm")
+        _cset(:chef_solo_config, ".chef/solo.rb")
+        _cset(:chef_node_config, ".chef/node.json")
 
         namespace :deploy do
           task :set_ownership do
@@ -34,7 +36,7 @@ module Capistrano::Backerman
               command << ". /etc/profile.d/rvm.sh"
               command << "cd #{current_release}"
               command << "rvm use #{default_ruby}@#{gemset}"
-              command << "rvmsudo chef-solo -c #{current_release}/.chef/solo.rb -j #{current_release}/.chef/node.json -N #{s.options[:node_name]}"
+              command << "rvmsudo chef-solo -c #{current_release}/#{chef_solo_config} -j #{current_release}/#{chef_node_config} -N #{s.options[:node_name]}"
               run command.join(" && ")
             end
           end
