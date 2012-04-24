@@ -18,7 +18,7 @@ module Capistrano::CapSousChef
             command = []
             command << ". /etc/profile.d/rvm.sh"
             command << "cd #{current_release}"
-            command << "rvm use #{default_ruby}@#{gemset}"
+            command << "rvm use #{chef_ruby}@#{chef_gemset}"
             command << "bundle exec librarian-chef install"
             run command.join(" && ")
           end

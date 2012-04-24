@@ -35,7 +35,7 @@ module Capistrano::CapSousChef
               command = []
               command << ". /etc/profile.d/rvm.sh"
               command << "cd #{current_release}"
-              command << "rvm use #{default_ruby}@#{gemset}"
+              command << "rvm use #{chef_ruby}@#{chef_gemset}"
               command << "rvmsudo chef-solo -c #{current_release}/#{chef_solo_config} -j #{current_release}/#{chef_node_config} -N #{s.options[:node_name]}"
               run command.join(" && ")
             end
