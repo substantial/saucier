@@ -10,6 +10,7 @@ module Capistrano::CapSousChef
 
           before 'chef_solo:install', 'chef_librarian:install'
           after 'deploy:setup', 'deploy:set_ownership'
+          after 'deploy:update_code', 'deploy:bundle_install'
 
           _cset(:chef_ruby, "default")
           _cset(:chef_gemset, "global")
@@ -22,6 +23,15 @@ module Capistrano::CapSousChef
           namespace :deploy do
             task :set_ownership do
               sudo "chown -R #{user}:#{group} #{deploy_to}"
+            end
+
+            task :bundle_install do
+              command = []
+              command << ". /etc/profile.d/rvm.sh"
+              command << "cd #{current_release}"
+              command << "rvm use #{chef_ruby}@#{chef_gemset}"
+              command << "bundle install"
+              run command.join(" && ")
             end
           end
 
