@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.version     = "0.0.1"
   s.authors     = ["Shaun Dern"]
   s.email       = ["shaun@substantial.com"]
-  s.homepage    = ""
-  s.summary     = %q{Use chef-librarian to manage and track chef cookbook versions and chef-solo to provision servers for your project with a single command.}
-  s.description = %q{Create capistrano stages to quickly provision servers for your project. Keep your cookbook dependencies inside your project with chef-librarian.}
+  s.homepage    = "http://github.com/substantial/backerman"
+  s.summary     = %q{a Capistrano Extension that uses librarian and chef-solo to track your project's server dependencies.}
+  s.description = %q{Create capistrano stages to quickly provision servers for your project. Keep your cookbook dependencies inside your project with librarian.}
 
   s.rubyforge_project = "backerman"
 

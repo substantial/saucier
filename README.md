@@ -1,7 +1,7 @@
 # backerman
 
-  backerman is a Capistrano Extension that uses [librarian](https://github.com/applicationsonline/librarian.git "chef-librarian") and
-[chef-solo](https://github.com/opscode/chef "chef") to manage project dependencies.
+  backerman is a Capistrano Extension that uses [librarian](https://github.com/applicationsonline/librarian.git "chef-librarian")
+and [chef-solo](https://github.com/opscode/chef "chef") to manage project dependencies and provision servers for your project.
 
 Use Capistrano Multistage to manage your servers and environments.
 
