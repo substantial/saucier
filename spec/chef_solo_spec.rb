@@ -43,5 +43,9 @@ describe Capistrano::CapSousChef::Recipes::ChefSolo do
     it "sets deploy_to ownership after deploy:setup" do
       recipe.must_have_callback_after "deploy:setup", "deploy:set_ownership"
     end
+
+    it "bundle installs before chef_solo:default" do
+      recipe.must_have_callback_before "chef_solo", "deploy:bundle_install"
+    end
   end
 end
