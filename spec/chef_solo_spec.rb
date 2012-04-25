@@ -1,7 +1,7 @@
 require File.expand_path(File.join(File.dirname(__FILE__), 'spec_helper'))
 
-describe Capistrano::CapSousChef::Recipes::ChefSolo do
-  load_capistrano_recipe(Capistrano::CapSousChef::Recipes::ChefSolo)
+describe Capistrano::Saucier::Recipes::ChefSolo do
+  load_capistrano_recipe(Capistrano::Saucier::Recipes::ChefSolo)
 
   describe "tasks" do
     it "has chef:install" do
@@ -10,10 +10,6 @@ describe Capistrano::CapSousChef::Recipes::ChefSolo do
 
     it "has chef:default" do
       recipe.must_have_task "chef_solo:default"
-    end
-
-    it "has deploy:set_ownership" do
-      recipe.must_have_task "deploy:set_ownership"
     end
   end
 
@@ -33,15 +29,9 @@ describe Capistrano::CapSousChef::Recipes::ChefSolo do
     it "chef_node_config" do
       recipe.fetch(:chef_node_config).must_equal ".chef/node.json"
     end
-  end
 
-  describe "callbacks" do
-    it "sets deploy_to ownership after deploy:setup" do
-      recipe.must_have_callback_after "deploy:setup", "deploy:set_ownership"
-    end
-
-    it "bundle installs before chef_solo:default" do
-      recipe.must_have_callback_before "chef_solo", "deploy:bundle_install"
+    it "sets chef_deploy_to" do
+      recipe.fetch(:chef_deploy_to).must_equal "/etc/chef"
     end
   end
 end

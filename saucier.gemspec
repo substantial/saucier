@@ -2,17 +2,18 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
-  s.name        = "cap-sous-chef"
+  s.name        = "saucier"
   s.version     = "0.0.1"
   s.authors     = ["Shaun Dern"]
   s.email       = ["shaun@substantial.com"]
-  s.homepage    = "http://github.com/substantial/cap-sous-chef"
+  s.homepage    = "http://github.com/substantial/saucier"
   s.summary     = %q{A Capistrano Extension that uses librarian and chef-solo to track your project's server dependencies.}
   s.description = %q{A Capistrano Extension that uses librarian and chef-solo to track your project's server dependencies.
-                     Use capistrano stages to quickly provision servers for your project. Keep your cookbook dependencies inside your project with librarian.
+                     Use capistrano stages to quickly provision servers for your project. Keep your chef runlist, node configuration
+                     and cookbook dependencies with your project.
                     }
 
-  s.rubyforge_project = "cap-sous-chef"
+  s.rubyforge_project = "saucier"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

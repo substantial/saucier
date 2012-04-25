@@ -1,8 +1,8 @@
 require File.expand_path(File.join(File.dirname(__FILE__), 'spec_helper'))
 
-describe Capistrano::CapSousChef::Recipes::ChefLibrarian do
+describe Capistrano::Saucier::Recipes::ChefLibrarian do
 
-  load_capistrano_recipe(Capistrano::CapSousChef::Recipes::ChefLibrarian)
+  load_capistrano_recipe(Capistrano::Saucier::Recipes::ChefLibrarian)
 
   describe "tasks" do
     it "has :install" do

@@ -1,7 +1,7 @@
 require 'capistrano'
-require 'cap-sous-chef/helpers'
+require 'saucier/helpers'
 
-module Capistrano::CapSousChef
+module Capistrano::Saucier
   module Recipes
     module ChefLibrarian
       def self.load_into(configuration)
@@ -31,5 +31,5 @@ module Capistrano::CapSousChef
 end
 
 if instance = Capistrano::Configuration.instance
-  Capistrano::CapSousChef::Recipes::ChefLibrarian.load_into(instance)
+  Capistrano::Saucier::Recipes::ChefLibrarian.load_into(instance)
 end
