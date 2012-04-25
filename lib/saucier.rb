@@ -4,23 +4,41 @@ require "saucier/recipes/chef_solo"
 require "saucier/recipes/chef_librarian"
 
 module Capistrano::Saucier
+  require 'saucier/helpers'
+
   def self.load_into(configuration)
     configuration.load do
-      after 'deploy:setup', 'deploy:set_ownership'
-      before 'chef_solo', 'deploy:bundle_install'
+      _cset(:chef_deploy_to, "/etc/chef")
+      _cset(:user, "deploy")
+      _cset(:group, "rvm")
 
       namespace :provision do
+        after 'deploy:setup', 'provision:set_ownership'
+        after 'deploy:update_code', 'provision:bundle_install'
+
         set :deploy_to, chef_deploy_to
 
         task :default do
+          transaction do
+            deploy.update_code
+            chef_librarian.default
+            chef_solo.default
+            provision.symlink_cookbooks
+          end
+        end
+
+        task :setup do
           deploy.setup
-          deploy.update_code
-          chef_solo.default
-          deploy.create_symlink
         end
 
         task :set_ownership do
           sudo "chown -R #{user}:#{group} #{deploy_to}"
+        end
+
+        task :symlink_cookbooks do
+          shared_dir = File.join(shared_path, 'cookbooks')
+          release_dir = File.join(current_release, 'cookbooks')
+          run "mkdir -p #{shared_dir}; ln -s #{shared_dir} #{release_dir}"
         end
 
         task :bundle_install do

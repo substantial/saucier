@@ -29,9 +29,5 @@ describe Capistrano::Saucier::Recipes::ChefSolo do
     it "chef_node_config" do
       recipe.fetch(:chef_node_config).must_equal ".chef/node.json"
     end
-
-    it "sets chef_deploy_to" do
-      recipe.fetch(:chef_deploy_to).must_equal "/etc/chef"
-    end
   end
 end

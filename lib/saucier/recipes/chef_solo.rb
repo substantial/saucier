@@ -1,6 +1,5 @@
 require 'capistrano'
 require 'saucier/helpers'
-require 'saucier/recipes/chef_librarian'
 
 module Capistrano::Saucier
   module Recipes
@@ -9,13 +8,11 @@ module Capistrano::Saucier
         configuration.load do
           _cset(:chef_ruby, "default")
           _cset(:chef_gemset, "global")
-          _cset(:chef_deploy_to, "/etc/chef")
           _cset(:chef_solo_config, ".chef/solo.rb")
           _cset(:chef_node_config, ".chef/node.json")
 
           namespace :chef_solo do
             task :default do
-              chef_librarian.install
               chef_solo.install
             end
 
