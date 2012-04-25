@@ -36,10 +36,6 @@ describe Capistrano::CapSousChef::Recipes::ChefSolo do
   end
 
   describe "callbacks" do
-    it "runs chef-librarian before chef-solo" do
-      recipe.must_have_callback_before "chef_solo:install", "chef_librarian:install"
-    end
-
     it "sets deploy_to ownership after deploy:setup" do
       recipe.must_have_callback_after "deploy:setup", "deploy:set_ownership"
     end

@@ -9,7 +9,6 @@ module Capistrano::CapSousChef
         configuration.load do
 
           before 'chef_solo', 'deploy:bundle_install'
-          before 'chef_solo:install', 'chef_librarian:install'
           after 'deploy:setup', 'deploy:set_ownership'
 
           _cset(:chef_ruby, "default")
