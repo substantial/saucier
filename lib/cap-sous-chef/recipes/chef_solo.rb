@@ -8,7 +8,7 @@ module Capistrano::CapSousChef
       def self.load_into(configuration)
         configuration.load do
 
-          before 'chef_solo:default', 'deploy:bundle_install'
+          before 'chef_solo', 'deploy:bundle_install'
           before 'chef_solo:install', 'chef_librarian:install'
           after 'deploy:setup', 'deploy:set_ownership'
 
@@ -29,7 +29,7 @@ module Capistrano::CapSousChef
               command = []
               command << ". /etc/profile.d/rvm.sh"
               command << "cd #{current_release}"
-              command << "rvm use #{chef_ruby}@#{chef_gemset}"
+              command << "rvm use #{chef_ruby}@#{chef_gemset} --create"
               command << "bundle install"
               run command.join(" && ")
             end
@@ -37,6 +37,7 @@ module Capistrano::CapSousChef
 
           namespace :chef_solo do
             task :default do
+              chef_librarian.install
               chef_solo.install
             end
 
@@ -46,7 +47,7 @@ module Capistrano::CapSousChef
                 command = []
                 command << ". /etc/profile.d/rvm.sh"
                 command << "cd #{current_release}"
-                command << "rvm use #{chef_ruby}@#{chef_gemset}"
+                command << "rvm use #{chef_ruby}@#{chef_gemset} --create"
                 command << "rvmsudo chef-solo -c #{current_release}/#{chef_solo_config} -j #{current_release}/#{chef_node_config} -N #{s.options[:node_name]}"
                 run command.join(" && ")
               end

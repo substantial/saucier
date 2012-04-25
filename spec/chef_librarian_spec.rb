@@ -29,7 +29,7 @@ describe Capistrano::CapSousChef::Recipes::ChefLibrarian do
       command = []
       command << ". /etc/profile.d/rvm.sh"
       command << "cd current/release/path"
-      command << "rvm use default@global"
+      command << "rvm use default@global --create"
       command << "bundle exec librarian-chef install"
       command.join(" && ")
     }
