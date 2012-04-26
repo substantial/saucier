@@ -53,3 +53,7 @@ module Capistrano::Saucier
     end
   end
 end
+
+if instance = Capistrano::Configuration.instance
+  Capistrano::Saucier.load_into(instance)
+end
