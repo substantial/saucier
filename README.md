@@ -7,6 +7,9 @@ Use Capistrano Multistage to manage your servers and environments.
 
 Use with [cap-strap](https://github.com/substantial/cap-strap "cap-strap") to bootstrap new servers.
 
+
+[A sample project using saucier may be found](https://github.com/substantial/saucier-example)
+
 ## Installation
 
 Add this line to your application's Gemfile:
