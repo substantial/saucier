@@ -7,10 +7,10 @@ Gem::Specification.new do |s|
   s.authors     = ["Shaun Dern"]
   s.email       = ["shaun@substantial.com"]
   s.homepage    = "http://github.com/substantial/saucier"
-  s.summary     = %q{A Capistrano Extension that uses librarian and chef-solo to track your project's server dependencies.}
-  s.description = %q{A Capistrano Extension that uses librarian and chef-solo to track your project's server dependencies.
-                     Use capistrano stages to quickly provision servers for your project. Keep your chef runlist, node configuration
-                     and cookbook dependencies with your project.
+  s.summary     = %q{A Capistrano Extension that uses librarian and chef-solo for provisioning a server.}
+  s.description = %q{A Capistrano Extension that uses librarian and chef-solo to track your project cookbook dependencies.
+                     Use capistrano stages to quickly provision servers for your project. Version control your chef runlist, node configuration
+                     and cookbook dependencies.
                     }
 
   s.rubyforge_project = "saucier"
