@@ -24,7 +24,7 @@ module Capistrano::Saucier
                 command << ". /etc/profile.d/rvm.sh"
                 command << "cd #{current_release}"
                 command << "rvm use #{chef_ruby}@#{chef_gemset} --create"
-                command << "rvmsudo chef-solo -c #{current_release}/#{chef_solo_config} -j #{current_release}/#{chef_node_config} -N #{node_name}"
+                command << "rvmsudo env SSH_AUTH_SOCK=$SSH_AUTH_SOCK chef-solo -c #{current_release}/#{chef_solo_config} -j #{current_release}/#{chef_node_config} -N #{node_name}"
                 run command.join(" && ")
               end
             end
