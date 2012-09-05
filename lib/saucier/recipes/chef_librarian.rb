@@ -17,10 +17,8 @@ module Capistrano::Saucier
 
             task :install do
               command = []
-              command << ". /etc/profile.d/rvm.sh"
               command << "cd #{current_release}"
-              command << "rvm use #{chef_ruby}@#{chef_gemset} --create"
-              command << "bundle exec librarian-chef install"
+              command << rvm_wrapper("bundle exec librarian-chef install")
               run command.join(" && ")
             end
           end

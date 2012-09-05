@@ -27,10 +27,8 @@ describe Capistrano::Saucier::Recipes::ChefLibrarian do
   describe "task :install" do
     let(:install_command) {
       command = []
-      command << ". /etc/profile.d/rvm.sh"
       command << "cd current/release/path"
-      command << "rvm use default@global --create"
-      command << "bundle exec librarian-chef install"
+      command << "rvm default@global --create do bundle exec librarian-chef install"
       command.join(" && ")
     }
     before do
