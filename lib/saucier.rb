@@ -21,9 +21,9 @@ module Capistrano::Saucier
         task :default do
           transaction do
             deploy.update_code
+            provision.symlink_cookbooks
             chef_librarian.default
             chef_solo.default
-            provision.symlink_cookbooks
             deploy.create_symlink
           end
         end
@@ -37,7 +37,7 @@ module Capistrano::Saucier
         end
 
         task :symlink_cookbooks do
-          shared_cookbooks = File.join(shared_dir, 'cookbooks')
+          shared_cookbooks = File.join(shared_path, 'cookbooks')
           release_cookbooks = File.join(current_release, 'cookbooks')
           run "mkdir -p #{shared_cookbooks}; ln -s #{shared_cookbooks} #{release_cookbooks}"
         end
