@@ -38,7 +38,7 @@ module Capistrano::Saucier
 
         task :symlink_cookbooks do
           shared_cookbooks = File.join(shared_path, 'cookbooks')
-          current_cookbooks File.join(current_release, 'cookbooks')
+          current_cookbooks = File.join(current_release, 'cookbooks')
           run "mkdir -p #{shared_cookbooks} && ln -s #{shared_cookbooks} #{current_cookbooks}"
         end
 
