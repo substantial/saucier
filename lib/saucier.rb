@@ -14,6 +14,7 @@ module Capistrano::Saucier
 
       namespace :provision do
         after 'deploy:setup', 'provision:set_ownership'
+        after 'deploy:update_code', 'provision.symlink_cookbooks'
         after 'deploy:update_code', 'provision:bundle_install'
 
         set :deploy_to, chef_deploy_to
@@ -21,7 +22,6 @@ module Capistrano::Saucier
         task :default do
           transaction do
             deploy.update_code
-            provision.symlink_cookbooks
             chef_librarian.default
             chef_solo.default
             deploy.create_symlink
@@ -38,7 +38,8 @@ module Capistrano::Saucier
 
         task :symlink_cookbooks do
           shared_cookbooks = File.join(shared_path, 'cookbooks')
-          run "mkdir -p #{shared_cookbooks} && ln -s #{shared_cookbooks} #{current_release}"
+          run "mkdir -p #{shared_cookbooks}"
+          run "ln -sF #{shared_cookbooks} #{current_release}"
         end
 
         task :bundle_install do
