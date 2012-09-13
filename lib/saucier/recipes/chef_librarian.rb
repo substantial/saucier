@@ -18,7 +18,7 @@ module Capistrano::Saucier
             task :install do
               command = []
               command << "cd #{current_release}"
-              command << rvm_wrapper("bundle exec librarian-chef install")
+              command << rvm_wrapper("bundle exec librarian-chef install --verbose")
               run command.join(" && ")
             end
           end

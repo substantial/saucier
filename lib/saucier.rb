@@ -37,9 +37,9 @@ module Capistrano::Saucier
         end
 
         task :symlink_cookbooks do
-          shared_tmp = File.join(shared_path, 'tmp')
-          run "mkdir -p #{shared_tmp}"
-          run "ln -sF #{shared_tmp} #{current_release}/tmp"
+          shared_librarian= File.join(shared_path, 'tmp', 'librarian')
+          run "mkdir -p #{shared_librarian}"
+          run "ln -sF #{shared_librarian} #{current_release}/tmp/"
         end
 
         task :bundle_install do
