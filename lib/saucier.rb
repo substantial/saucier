@@ -14,7 +14,7 @@ module Capistrano::Saucier
 
       namespace :provision do
         after 'deploy:setup', 'provision:set_ownership'
-        after 'deploy:update_code', 'provision.symlink_cookbooks'
+        after 'deploy:update_code', 'provision:symlink_cookbooks'
         after 'deploy:update_code', 'provision:bundle_install'
 
         set :deploy_to, chef_deploy_to
