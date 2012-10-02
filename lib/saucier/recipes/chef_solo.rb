@@ -36,3 +36,4 @@ end
 if instance = Capistrano::Configuration.instance
   Capistrano::Saucier::Recipes::ChefSolo.load_into(instance)
 end
+

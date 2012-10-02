@@ -9,3 +9,4 @@ end
 def rvm_wrapper(command)
   "#{RVM_BIN_PATH} #{chef_ruby}@#{chef_gemset} --create do #{command}"
 end
+
