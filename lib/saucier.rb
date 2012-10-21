@@ -45,7 +45,7 @@ module Capistrano::Saucier
         task :bundle_install do
           command = []
           command << "cd #{current_release}"
-          command << rvm_wrapper("bundle install")
+          command << rvm_wrapper("bundle install --without=capistrano")
           run command.join(" && ")
         end
       end
