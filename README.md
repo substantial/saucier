@@ -21,7 +21,16 @@ And then execute:
     $ bundle
 
 ## Usage
-  Make sure your project has a Cheffile with required chef cookbooks.
+Make sure your project has a Cheffile with required chef cookbooks.
+
+Use capistrano roles to associate with node configs. For example:
+
+```ruby
+server "mysite.com", :webserver, :db
+```
+
+Will run chef-solo twice on that server, once with `"#{chef_node_config_path}/node_webserver.json"`
+and again with `"#{chef_node_config_path}/node_db.json"`
 
 ###Configuration:
 
@@ -31,7 +40,7 @@ And then execute:
 * `set :chef_ruby, "<ruby you'd like to run librarian and chef-solo>"` - default: "default"
 * `set :chef_gemset, "<gemset for chef>"` - default: "global"
 * `set :chef_solo_config, "<relative path to the chef solo config>"` - default ".chef/solo.rb"
-* `set :chef_node_config, "<relative path to your node config>"` - default ".chef/node.json"
+* `set :chef_node_config_path, "<relative path to your node configs>"` - default ".chef"
 
 ## Testing
 

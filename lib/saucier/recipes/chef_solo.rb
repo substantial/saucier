@@ -9,7 +9,7 @@ module Capistrano::Saucier
           _cset(:chef_ruby, "default")
           _cset(:chef_gemset, "global")
           _cset(:chef_solo_config, ".chef/solo.rb")
-          _cset(:chef_node_config, ".chef/node.json")
+          _cset(:chef_node_config_path, ".chef")
 
           namespace :chef_solo do
             task :default do
@@ -18,12 +18,16 @@ module Capistrano::Saucier
 
             task :install do
               servers = find_servers_for_task(current_task)
-              servers.each do |s|
-                node_name = s.options[:node_name] || 'chef-node'
+              servers.each do |server|
+                node_name = server.options[:node_name] || 'chef-node'
+                roles = role_names_for_host(server)
                 command = []
                 command << "cd #{current_release}"
-                command << rvm_wrapper("rvmsudo env SSH_AUTH_SOCK=$SSH_AUTH_SOCK chef-solo -c #{current_release}/#{chef_solo_config} -j #{current_release}/#{chef_node_config} -N #{node_name}")
-                run command.join(" && ")
+                roles.each do |role|
+                  role_path = "#{current_release}/#{chef_node_config_path}/node_#{role}.json"
+                  command << rvm_wrapper("rvmsudo env SSH_AUTH_SOCK=$SSH_AUTH_SOCK chef-solo -c #{current_release}/#{chef_solo_config} -j #{role_path} -N #{node_name}")
+                end
+                run command.join(" && "), hosts: [server]
               end
             end
           end
