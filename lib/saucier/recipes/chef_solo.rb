@@ -23,7 +23,7 @@ module Capistrano::Saucier
                 command = []
                 command << "cd #{current_release}"
 
-                command << rvm_wrapper("rvmsudo -i env SSH_AUTH_SOCK=$SSH_AUTH_SOCK \\$GEM_HOME/bin/chef-solo -c #{current_release}/#{chef_solo_config} -j #{current_release}/#{chef_node_config} -N #{node_name}")
+                command << rvm_wrapper("rvmsudo -E env SSH_AUTH_SOCK=$SSH_AUTH_SOCK bash -c '$GEM_HOME/bin/chef-solo -c #{current_release}/#{chef_solo_config} -j #{current_release}/#{chef_node_config} -N #{node_name}'")
                 run command.join(" && ")
               end
             end
