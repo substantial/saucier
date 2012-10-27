@@ -1,4 +1,5 @@
-RVM_BIN_PATH='/usr/local/rvm/bin/rvm'
+RVM_PATH = '/usr/local/rvm'
+RVM_BIN_PATH = RVM_PATH + '/bin/rvm'
 
 def _cset(name, *args, &block)
   unless exists?(name)
